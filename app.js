@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose  = require('mongoose');
+
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -11,7 +13,17 @@ const directorsRouter = require('./routes/directors');
 const app = express();
 
 
+const url= "mongodb://localhost:27017/Video-clubDo";
+mongoose.connect(url);
+const db= mongoose.connection;
 
+db.on('open', ()=>{
+  console.log("Conectado a la base de datos");
+});
+
+db.on('error', ()=>{
+  console.log("Error al conectar");
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
