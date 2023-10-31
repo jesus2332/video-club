@@ -3,9 +3,9 @@ const express = require('express');
 
 const router = express.Router();
 
-const controller = require('../controllers/directors');
+const controller = require('../controllers/genres');
 
-router.get('/list/:page', controller.list);
+router.get('/', controller.list);
 router.get('/:id', controller.index);
 router.post('/', controller.create);
 router.put('/:id', controller.replace);
